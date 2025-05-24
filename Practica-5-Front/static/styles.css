@@ -1,0 +1,230 @@
+/* Estilos globales */
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Contenedor principal: sidebar + chat */
+.container {
+  display: flex;
+  height: 100vh;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Sidebar: lista de contactos */
+.sidebar {
+  width: 20%;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+/* Estilo para centrar el contenedor del título y el botón */
+.centar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo para el botón "Crear Contacto" */
+.sidebar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+  background-color: #282b2e;
+}
+
+
+/* Tarjetas de contacto */
+.contact-card {
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fafafa;
+  transition: background-color 0.3s;
+}
+
+.contact-card:hover {
+  background-color: #f0f0f0;
+}
+
+/* Contacto seleccionado */
+.selected {
+  background-color: #cee5fa;
+}
+
+/* Área del chat */
+.chat-area {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+/* Lista de mensajes */
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  height: 90vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+/* Mensaje individual */
+.message {
+  border-radius: 8px;
+  padding: 0.5rem;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* Mensajes del contacto */
+.contact-message {
+  background-color: #e0f7fa;
+  align-self: flex-start;
+}
+
+/* Mensajes del usuario */
+.user-message {
+  background-color: #c8e6c9;
+  align-self: flex-end;
+}
+
+/* Timestamp del mensaje */
+.timestamp {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+
+/* Estilo general del contenedor del input */
+.message-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+/* Estilo del campo de texto */
+.message-input input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+
+/* Estilo del botón de enviar */
+.message-input button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message-input button:hover {
+  background-color: green;
+}
+
+
+
+
+
+/* Estilo general del formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los campos de entrada */
+.form div {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: #555;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+
+
+/* Botones */
+.form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form .btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.form .btn:hover {
+  background-color: #0056b3;
+}
+
+.form .reset {
+  background-color: #f44336;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.form .reset:hover {
+  background-color: #d32f2f;
+}
+
+/* Mensaje de error */
+.form .error {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
