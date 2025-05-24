@@ -1,5 +1,4 @@
 import { useState } from "preact/hooks";
-import axios from "npm:axios";
 import { refrescarMensajes } from "../signal.ts";
 
 type Props = {
@@ -13,11 +12,22 @@ export default function MessageInput({ chatId }: Props) {
     if (!message.trim()) return;
 
     try {
-      await axios.post("https://back-a-p4.onrender.com/messages", {
-        chatId,
-        content: message,
-        isContactMessage: false,
+      const response = await fetch("https://back-a-p4.onrender.com/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chatId,
+          content: message,
+          isContactMessage: false,
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error("Error al enviar mensaje");
+      }
+
       setMessage("");
       refrescarMensajes.value = !refrescarMensajes.value; // Cambiar el valor de la señal
     } catch (error) {

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "preact/hooks";
-import axios from "npm:axios";
 import { Contact, Chat } from "../types.ts";
 import ContactSidebar from "./ContactSidebar.tsx";
 import ChatArea from "./ChatArea.tsx";
@@ -11,10 +10,12 @@ const ContactList = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get<{ count: number; data: Contact[] }>(
-          "https://back-a-p4.onrender.com/contacts"
-        );
-        setContacts(response.data.data);
+        const response = await fetch("https://back-a-p4.onrender.com/contacts");
+        if (!response.ok) {
+          throw new Error("Error al obtener contactos");
+        }
+        const data = await response.json();
+        setContacts(data.data);
       } catch (error) {
         console.error("Error al obtener contactos:", error);
       }
@@ -25,10 +26,12 @@ const ContactList = () => {
 
   const onContactClick = async (contact: Contact) => {
     try {
-      const response = await axios.get<Chat>(
-        `https://back-a-p4.onrender.com/chats/${contact.chatId}`
-      );
-      setSelectedChat(response.data);
+      const response = await fetch(`https://back-a-p4.onrender.com/chats/${contact.chatId}`);
+      if (!response.ok) {
+        throw new Error("Error al obtener chat");
+      }
+      const data: Chat = await response.json();
+      setSelectedChat(data);
     } catch (error) {
       console.error("Error al obtener chat:", error);
     }

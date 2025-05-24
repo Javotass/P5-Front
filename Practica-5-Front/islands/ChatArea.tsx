@@ -2,7 +2,6 @@ import { Chat, Message } from "../types.ts";
 import MessageInput from "./MessageInput.tsx";
 import { useEffect, useState } from "preact/hooks";
 import { refrescarMensajes } from "../signal.ts";
-import axios from "npm:axios";
 
 type Props = {
   chat: Chat | null;
@@ -15,10 +14,12 @@ export default function ChatArea({ chat }: Props) {
     if (!chat) return;
 
     try {
-      const response = await axios.get<Chat>(
-        `https://back-a-p4.onrender.com/chats/${chat._id}`
-      );
-      setMessages(response.data.messageIds); // Actualizar los mensajes en el estado
+      const response = await fetch(`https://back-a-p4.onrender.com/chats/${chat._id}`);
+      if (!response.ok) {
+        throw new Error("Error al recargar mensajes");
+      }
+      const data: Chat = await response.json();
+      setMessages(data.messageIds); // Actualizar los mensajes en el estado
     } catch (error) {
       console.error("Error al recargar mensajes:", error);
     }
